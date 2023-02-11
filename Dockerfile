@@ -1,6 +1,5 @@
-FROM openjdk:latest
-RUN  microdnf install yum && yum  install git -y
-RUN git clone https://github.com/spring-projects/spring-petclinic.git
-WORKDIR /spring-petclinic
+FROM openjdk:20-slim
+COPY spring-petclinic /app
+WORKDIR /app
 RUN ./mvnw package
-CMD java -jar target/*.jar
+CMD [“java”, ”-jar”, ”target/spring-petclinic-3.0.0-SNAPSHOT.jar”]
